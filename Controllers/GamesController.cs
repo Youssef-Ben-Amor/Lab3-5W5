@@ -19,6 +19,34 @@ namespace RelationsNaN.Controllers
             _context = context;
         }
 
+        [HttpPost]
+        public IActionResult RemovePlatform(int id, int platformId)
+        {
+            var game = _context.Game.Include(g => g.Platforms).FirstOrDefault(g => g.Id == id);
+            if (game != null)
+            {
+                var platform = game.Platforms.FirstOrDefault(p => p.Id == platformId);
+                if (platform != null)
+                {
+                    game.Platforms.Remove(platform);
+                    _context.SaveChanges();
+                }
+            }
+            return RedirectToAction("Edit", new { id });
+        }
+
+        [HttpPost]
+        public IActionResult AddPlatform(int id, int platformId)
+        {
+            var game = _context.Game.Include(g => g.Platforms).FirstOrDefault(g => g.Id == id);
+            var platform = _context.Platform.FirstOrDefault(p => p.Id == platformId);
+            if (game != null && platform != null && !game.Platforms.Contains(platform))
+            {
+                game.Platforms.Add(platform);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Edit", new { id });
+        }
         // GET: Games
         public async Task<IActionResult> Index()
         {

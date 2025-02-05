@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RelationsNaN.Data;
 
@@ -11,9 +12,11 @@ using RelationsNaN.Data;
 namespace RelationsNaN.Migrations
 {
     [DbContext(typeof(RelationsNaNContext))]
-    partial class RelationsNaNContextModelSnapshot : ModelSnapshot
+    [Migration("20250205174232_migmag1")]
+    partial class migmag1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,9 +79,6 @@ namespace RelationsNaN.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
 
                     b.Property<int>("GameId")
                         .HasColumnType("int");

@@ -15,5 +15,9 @@ namespace RelationsNaN.Models
         [ValidateNever]
         public List<Platform> Platforms { get; set; }
         public int? PlatformsId { get; set; }
+
+        [ValidateNever]
+        public List<GamePurchase> GamePurchases { get; set; }
+
     }
 }
